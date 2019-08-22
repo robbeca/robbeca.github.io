@@ -10,8 +10,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-
 <title>Robbe Caes</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -26,12 +24,11 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color:rgb(94, 139, 124);
-  }
-</style>
+<link rel="stylesheet" href="default" type="text/css" />
+<link rel="stylesheet" href="metropolis" type="text/css" />
+<link rel="stylesheet" href="metropolis-fonts" type="text/css" />
+
+
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -40,9 +37,53 @@ if (window.hljs) {
     window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
 }
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+
+//code folding 
+
+// dynamically load mathjax for compatibility with self-contained 
+
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+
 </script>
-
-
 
 <style type="text/css">
 
@@ -77,15 +118,6 @@ p{
 .table th:not([align]) {
   text-align: left;
 }
-</style>
-
-<link rel="stylesheet" href="default" type="text/css" />
-<link rel="stylesheet" href="metropolis" type="text/css" />
-<link rel="stylesheet" href="metropolis-fonts" type="text/css" />
-
-
-
-<style type = "text/css">
 .main-container {
   max-width: 1500px;
   margin-left: auto;
@@ -101,7 +133,6 @@ img {
   max-height:500px;
   padding:40px;
   
-  
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -115,10 +146,7 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
-</style>
 
-
-<style type="text/css">
 /* padding for bootstrap navbar */
 body {
   padding-top: 64px;
@@ -186,29 +214,6 @@ body {
   margin-left: 10px;
   border-radius: 6px 0 6px 6px;
 }
-</style>
-
-<script>
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark it active
-  menuAnchor.parent().addClass('active');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
-});
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
 .tabset-dropdown > .nav-tabs {
   display: inline-table;
   max-height: 500px;
@@ -260,34 +265,14 @@ $(document).ready(function () {
 .tabset-dropdown > .nav-tabs > li {
   display: none;
 }
-/*format lists*/
-ul:before{
-    content:attr(aria-label);
-    font-size:120%;
-    font-weight:bold;
-}
 
-ul.a{
-  font-size:20px;
-}
 </style>
-
-<!-- code folding -->
-
-
-
 
 </head>
 
 <body style="background-color:rgb(240, 240, 240)">
-
-
 <div class="container-fluid main-container">
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation" style="background-color:rgb(218, 238, 238)">
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation" style="background-color:rgb(100, 99, 99)">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -295,42 +280,42 @@ ul.a{
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Robbe Caes</a>
+      <a class="navbar-brand" style="color: rgb(255, 255, 255)"href="index.html">Robbe Caes</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="aims.html">aims</a>
+  <a style="color: rgb(255, 255, 255)" href="aims.html">aims</a>
 </li>
 <li>
-  <a href="work.html">work experience</a>
+  <a style="color: rgb(255, 255, 255)" href="work.html">work experience</a>
 </li>
 <li>
-  <a href="education.html">education</a>
+  <a style="color: rgb(255, 255, 255)" href="education.html">education</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="contact.html">
-    <span class="fa fa-envelope fa-lg"></span>
+  <a style="color: rgb(255, 255, 255)" href="contact.html">
+    <span class="fa fa-envelope fa-lg"style="color: rgb(255, 255, 255)"></span>
      
   </a>
 </li>
 <li>
   <a href="https://github.com/robbeca">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg" style="color: rgb(255, 255, 255)"></span>
      
   </a>
 </li>
 <li>
   <a href="https://stackoverflow.com/users/11741133/robbe">
-    <span class="fa fa-stack-overflow pr-1"></span>
+    <span class="fa fa-stack-overflow fa-lg"style="color: rgb(255, 255, 255)"></span>
      
   </a>
 </li>
 <li>
   <a href="https://www.linkedin.com">
-    <span class="fa fa-linkedin fa-lg"></span>
+    <span class="fa fa-linkedin fa-lg"style="color: rgb(255, 255, 255)"></span>
      
   </a>
 </li>
@@ -382,45 +367,8 @@ ul.a{
 
 </div>
 </div>
-<script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
 
 
-</script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 
 </body>
 </html>
